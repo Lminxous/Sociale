@@ -1,0 +1,28 @@
+{% extends 'social/base.html' %}
+{% block content %}
+<div>
+    <legend class="border-bottom mb-4">
+      <br>
+        <h2>Circle's Recent Posts</h2>  
+    </legend>
+
+    {% if posts %} 
+    {% for post in posts %}
+        <article class="media content-section">
+            <img width=11.5%  class = 'rounded-circle article-img'src = "{{ post.author.profile.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{post.author.profile.url}}">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h3><a href="">{{ post.title }}</a></h3>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    {% else %}
+        <p>No Recent Posts!!!!</p>
+    {% endif %}
+
+</div>
+{% endblock content %}

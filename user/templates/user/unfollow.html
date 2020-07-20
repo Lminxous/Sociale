@@ -1,0 +1,19 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class = "content-section">
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div>
+                <br>
+                <h3> Are you sure you want to unfollow "{{ target }}" ?</h3>
+                <h5 class="text-muted"> Their posts would be removed from your personalised feed.</h5>
+            </div>
+        <div >
+            <button class="btn btn-outline-danger" type="submit">Confirm</button>
+            <a class="btn btn-outline-secondary" href="{% url 'circle' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

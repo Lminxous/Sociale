@@ -1,0 +1,19 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <legend>
+            Want to edit your comment?
+        </legend>
+        {{ form|crispy }}
+        <button class="btn btn-outline-primary" type="submit">Update</button>
+    </form>
+    
+
+</div>
+
+{% endblock content %}

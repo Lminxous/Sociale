@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="{% static 'social/pro-assets/css/main.css' %}" />
+            <title>Profile | {{user.username}}</title>
+        </head>
+
+	<body class="is-preload">
+
+        
+
+		<!-- Header -->
+			<section id="header">
+				<header class="major">
+					<h1>Highlights</h1>
+					<!-- <p>A fun little { responsive } single pager by <a href="http://html5up.net">HTML5 UP</a></p> -->
+				</header>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="main special">
+				<div class="container">
+					<div class="content">
+						<header class="major">
+							<h2>Who I am</h2>
+                        </header>
+                        <img width = 55%  class = 'rounded-circle article-img' src = "{{user.profile.image.url}}">
+						<p>{{user.username}}</p>
+						<p>{{user.email}}</p>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
+
+		
+		<!-- Two -->
+			<section id="two" class="main special">
+				<div class="container">
+					<div class="content">
+						<header class="major">
+							<h2>About Me</h2>
+						</header>
+                        <p>{{user.profile.about}}</p>
+
+					</div>
+					<a href="#three" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
+
+		<!-- Three -->
+
+
+		<section id="three" class="main special">
+			<div class="container">
+				<div class="content">
+                    {% if posts.count > 1 %}
+                    <header class="major">
+                        <h2>Posts({{posts.count}})</h2>
+                    </header>
+                    {% endif %}
+
+                    {% if posts %} 
+					{% for post in posts %}
+                        <article class="media content-section">
+                            <img width=15%  class = 'rounded-circle article-img'src = "{{post.author.profile.image.url}}">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                            </div>
+                            <h3><a href="{%url 'post-detail' post.id%}">{{ post.title }}</a></h3>
+                            <p class="article-content">{{ post.content }}</p>
+                        </div>
+                        </article>
+                    {% endfor %}
+		
+					{% endif %}
+	
+                </div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				
+				<footer>
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					    <li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'social-home' %}" >Home</a></li>
+                        <li><a href="{% url 'logout' %}" >Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'register' %}">Join Us</a></li>
+                        <li><a href="{% url 'login' %}">Already a Member?</a></li>
+                        {% endif %}
+    
+                    </ul>
+                     Copyright ©2020 All rights reserved
+					
+				</footer>
+			</div>
+
+        <!-- Scripts -->
+        
+            <script  src= "{% static 'social/assets/js/main.js' %}" ></script>
+
+            <script src = "{% static 'social/pro-assets/js/jquery.min.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/jquery.scrollex.min.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/jquery.scrolly.min.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/browser.min.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/breakpoints.min.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/util.js'%}"></script>
+            <script src = "{% static 'social/pro-assets/js/main.js'%}"></script>
+            
+
+	</body>
+</html>

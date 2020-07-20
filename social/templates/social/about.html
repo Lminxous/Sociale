@@ -1,0 +1,52 @@
+{% load static %}
+
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Sociale</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<base href="/">
+		<link  rel="stylesheet" href="{% static 'social/assets/css/main.css' %}" type="text/css" />
+		
+	</head>
+
+	<body class="landing-is-preload">
+		
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="{% url 'social-home' %}">Sociale</a></h1>
+				<p>Everything has beauty... <br>
+				We are just helping future minds to contemplate it !</p>
+			</header>
+
+		<!-- Main -->
+		 
+	
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					
+
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'social-home' %}" >Home</a></li>
+					<li><a href="{% url 'logout' %}" >Logout</a></li>
+					{% else %}
+					<li><a href="{% url 'register' %}">Join Us</a></li>
+					<li><a href="{% url 'login' %}">Already a Member?</a></li>
+					{% endif %}
+
+				</ul>
+				 Copyright ©2020 All rights reserved
+				
+			</footer>
+
+		<!-- Scripts -->
+			<script  src= "{% static 'social/assets/js/main.js' %}" ></script>
+			
+
+	</body>
+</html>

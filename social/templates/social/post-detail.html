@@ -1,0 +1,78 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class = "content-section">
+
+
+<!-- Post author details -->
+
+<br>
+  <legend class="border-bottom mb-4">
+  <h2>Description
+  {% if post.author == user %}
+  <a class="btn btn-danger btn-sm mt-1 mb-1 ml-1" href="{% url 'post-confirm-delete' post.id %}" style="float: right;">Delete Post</a>
+  <a class="btn btn-primary btn-sm mt-1 mb-1 ml-1" href="{% url 'post-update' post.id %}" style="float: right;">Update Post</a>
+  {% else %}
+  <a class="btn btn-secondary btn-sm mt-1 mb-1 ml-1" href="{% url 'post-report' post.id %}" style="float: right;">Report Post</a>
+  {% endif %}
+  
+  </h2>  
+  </legend>
+        
+  <div class="media-body">
+        <img width=9% src="{{post.author.profile.image.url}}">
+  </div>
+  <div class="article-metadata">
+    <small class="text-muted">  Written by {{post.author}} </small>
+    <br>
+    <small class="text-muted">  on {{ post.date_posted |date:"F d, Y"}}</small>
+    <br>
+    
+    <br>
+  </div>  
+  <div>
+    <a href="{% url 'post-detail' post.id %}"><h2 style = "text-decoration-line: underline;">{{ post.title }} </h2></a>
+    <p>{{ post.content }}</p>
+  
+    
+
+<!-- Comment Section -->
+
+
+  </div>
+    <div class="container">
+    
+     <div class="container">
+       <form method="POST" enctype="multipart/form-data" > <!--action="social/comment-update.html" -->
+        {% csrf_token %}
+        <legend class="border-bottom mb-6">
+            Comments
+        </legend>
+        {{ form|crispy }}
+        <button class="btn btn-info" type="submit" name="Post">Post</button>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        
+        {% for comment in comments %}
+        {% if comment.author == user %}
+        <a class="btn btn-danger btn-sm mt-1 mb-1 ml-1" href="{% url 'comment-delete' comment.id%}" style="float: right;" >Delete</a>
+        <a class="btn btn-primary btn-sm mt-1 mb-1 ml-1" href="{% url 'comment-update' comment.id %}" style="float: right;">Edit</a>
+        {% endif %}
+        <div class="article-metadata">
+          <img width=7% class='rounded-circle article-img' src="{{comment.author.profile.image.url}}">
+          <small class="text-muted"> 
+            <a href="">{{comment.author}}</a>
+          </small>
+          <small class="text-muted" > {{comment.comment|linebreaks}} </small>
+        </div>  
+        <br>
+        {% endfor %}
+       
+     </div>    
+    </form>
+    </div>
+</div>
+{% endblock content %}

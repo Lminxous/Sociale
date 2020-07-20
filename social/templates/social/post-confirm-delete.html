@@ -1,0 +1,23 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class = "content-section">
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div>
+                <br>
+            <legend class='border-bottom mb-4'><h2>Delete this Post?</h2>
+            </legend>
+            <h4>Are you sure you want to delete "{{ post.title }}?"</h4>
+            <small class="text-muted">
+                You won't be able to see this post anymore.
+            </small>
+            </div>
+        <div >
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+            <a class="btn btn-outline-secondary" href="{% url 'post-detail' post.id %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

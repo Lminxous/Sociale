@@ -1,0 +1,23 @@
+{% extends 'social/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class = "content-section">
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        <legend class='border-bottom mb-4'><h2>Delete this comment?</h2></legend>
+            <div>
+    
+            <h4> Are you sure you want to delete "{{com.comment}}"? </h4>
+            <small class="text-muted">
+                You won't be able to retrieve it later on.
+            </small>
+            </div>
+        <div >
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+            <a class="btn btn-outline-secondary" href="{% url 'social-home' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}
