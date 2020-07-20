@@ -19,6 +19,7 @@
             </div>
         </div>
         </article>
+
     {% else %}
     <article class="media content-section">
         <img width=11.5%  class = 'rounded-circle article-img'src = "{{ item.profile.image.url }}">
@@ -33,6 +34,27 @@
         </article>
     {% endif %}
     {% endfor %}
+    
+    <div class="blog_info text-center">
+        {% if users.has_previous %}
+            <a class="btn btn-outline-info mb-4 " href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ users.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in users.paginator.page_range %}
+            {% if users.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% elif num > users.number|add:'-3' and num < users.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if users.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ users.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ users.paginator.num_pages }}">Last</a>
+        {% endif %}
+        </div>
+
     </div>
 </div>
 {% endblock content %}

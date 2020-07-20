@@ -1,4 +1,4 @@
-# Socialy
+# Sociale
 
 A blog website hosted on heroku using AWS(S3 and IAM) on Postgres database .
 

@@ -10,6 +10,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from social.models import Post
 from openpyxl import Workbook
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 
@@ -88,27 +90,52 @@ def profile(request):
 @login_required 
 def feed(request):
 
-    posts = []
+    posts_list = []
     for friend in Circle.objects.get(owner=request.user).friends.all():
           for post in Post.objects.filter(author=friend):
-            posts.append(post)
+            posts_list.append(post)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(posts_list, 5)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+
     context = {
          'posts' : posts
     }
     return render(request,'user/feed.html',context)
-
-
+    
 
 
 # Follower Model
 
 @login_required 
 def circle(request):
+    
+    users_list = User.objects.all().exclude(id=(request.user).id)
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(users_list, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
     context = {
-        'items' : Circle.objects.get(owner=request.user).friends.all(),
+        'users' : users ,
+        'users_list' : users_list,
         'owner' : Circle.objects.get(owner=request.user).owner,
-        'users' : User.objects.all().exclude(id=(request.user).id)
+        'items' : Circle.objects.get(owner=request.user).friends.all(),
     }
+
     return render(request,'user/circle.html',context)
 
 @login_required    

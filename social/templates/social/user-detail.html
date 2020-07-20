@@ -34,7 +34,7 @@
 						<p>{{user.username}}</p>
 						<p>{{user.email}}</p>
 					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
+					<!-- <a href="#two" class="goto-next scrolly">Next</a> -->
 				</div>
 			</section>
 
@@ -49,7 +49,7 @@
                         <p>{{user.profile.about}}</p>
 
 					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
+					<!-- <a href="#three" class="goto-next scrolly">Next</a> -->
 				</div>
 			</section>
 
@@ -86,27 +86,26 @@
 		</section>
 
 		<!-- Footer -->
-			<div id="footer">
+		<section id="footer">
 
+			<footer>
+				<ul class="icons">
+					<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
 				
-				<footer>
-					<ul class="icons">
-						<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-					    <li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
-					
-                        {% if user.is_authenticated %}
-                        <li><a href="{% url 'social-home' %}" >Home</a></li>
-                        <li><a href="{% url 'logout' %}" >Logout</a></li>
-                        {% else %}
-                        <li><a href="{% url 'register' %}">Join Us</a></li>
-                        <li><a href="{% url 'login' %}">Already a Member?</a></li>
-                        {% endif %}
-    
-                    </ul>
-                     Copyright ©2020 All rights reserved
-					
-				</footer>
-			</div>
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'social-home' %}" >Home</a></li>
+					<li><a href="{% url 'logout' %}" >Logout</a></li>
+					{% else %}
+					<li><a href="{% url 'register' %}">Join Us</a></li>
+					<li><a href="{% url 'login' %}">Already a Member?</a></li>
+					{% endif %}
+
+				</ul>
+				 Copyright ©2020 All rights reserved
+				
+			</footer>
+		</section>
 
         <!-- Scripts -->
         
