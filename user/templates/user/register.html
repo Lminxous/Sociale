@@ -1,4 +1,4 @@
-{% extends "social/base.html" %}
+{% extends "user/user-base.html" %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 {% block content %}
@@ -9,7 +9,7 @@
                 <legend class='border-bottom mb-4'><h2>Join Today</h2></legend>
                 {{form|crispy }}
             <div >
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                <button style="width: 90px; height: 50px ;" class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
         </form>
         <div >

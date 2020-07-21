@@ -15,9 +15,9 @@
                                 <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80" >
                                 <div class="categories_details">
                                     <div class="categories_text">
-                                        <a href="{% url 'feed' %}"><h5>My Space</h5></a>
+                                        <a href=""><h5>Life</h5></a>
                                         <div class="border_line"></div>
-                                        <p> Personalised Feed </p>
+                                        <p> Turning coffee into code </p>
                                     </div>
                                 </div>
                             </div>
@@ -29,9 +29,9 @@
                                 <img src="https://images.unsplash.com/photo-1541718366506-c16ed9459a7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80" >
                                 <div class="categories_details">
                                     <div class="categories_text">
-                                        <a href="{% url 'post-create'%}"><h5>Bored</h5></a>
+                                        <a href=""><h5>Wanna see rainbow </h5></a>
                                         <div class="border_line"></div>
-                                        <p> Add something new ! </p>
+                                        <p> Try to keep with the rain </p>
                                     </div>
                                 </div>
                             </div>
@@ -43,9 +43,9 @@
                                 <img src="https://images.unsplash.com/photo-1450542814732-e210d1b7b938?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80">
                                 <div class="categories_details">
                                     <div class="categories_text">
-                                        <a href="{% url 'circle' %}"><h5>Circle</h5></a>
+                                        <a href=""><h5>experiences</h5></a>
                                         <div class="border_line"></div>
-                                        <p>Connect with like minds</p>
+                                        <p>The Journey is the reward</p>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
         </section>
-        <br><br><br>
+        <br>
     {% endif %}
 
            
@@ -171,14 +171,14 @@
                     <a class="btn btn-outline-info mb-4 " href="?page=1">First</a>
                     <a class="btn btn-outline-info mb-4" href="?page={{ posts.previous_page_number }}">Previous</a>
                 {% endif %}
-
+<!-- 
                 {% for num in posts.paginator.page_range %}
                     {% if posts.number == num %}
                         <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
                     {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
                         <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
                     {% endif %}
-                {% endfor %}
+                {% endfor %} -->
 
                 {% if posts.has_next %}
                     <a class="btn btn-outline-info mb-4" href="?page={{ posts.next_page_number }}">Next</a>

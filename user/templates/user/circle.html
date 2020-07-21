@@ -1,4 +1,4 @@
-{% extends "social/base.html" %}
+{% extends "user/user-base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="content-section">
@@ -26,7 +26,8 @@
         <div class="media-body">
             <div class="article-metadata">
             <a class="mr-2" href="{{item.profile.image.url}}">{{ item }}</a>
-            <a class="btn btn-outline-info" href="{% url 'follow' item.id %}" style="float: right;">Follow</a>
+            <!-- <button style="width: 80px; height: 50px ;" class="btn btn-outline-info" type="submit">Follow</button> -->
+            <a  class="btn btn-outline-info" href="{% url 'follow' item.id %}" style="float: right;">Follow</a>
             <br>
             <small class="text-muted">{{ item.email}}</small>
             </div>

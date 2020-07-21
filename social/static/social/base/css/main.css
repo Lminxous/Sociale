@@ -30,13 +30,13 @@ body {
 
 .topnav a:hover {
     background-color: rgb(192, 189, 179);
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0) !important;
 }
 
 .topnav a.active {
     background-color:  rgb(149, 226, 5);
     /* rgb(255, 187, 0) rgb(226, 211, 5)  rgb(226, 167, 5) rgb(226, 211, 5) rgb(204, 226, 5)*/
-    color: black;
+    color: black !important;
 }
 
 .circular--square {
