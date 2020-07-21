@@ -137,14 +137,15 @@
                                             <p>
                                             Contact to know other weird stuff
                                             </p> 
-                                                <div class="input-group">
+                                                <!-- <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                                        <div class="input-group-text"><i class="fa fa-angellist" aria-hidden="true"></i></div> 
                                                     </div>
-                                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
-                                                </div>
+                                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Lminxous"  >
+                                                    <br>
+                                                </div> -->
                                                 <br> 
-                                                <a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Hey, Please add me to your mailing list. Thanks!" class="bbtns align-items-center">Ping Me !</a>
+                                                <a href="mailto:cprince4742@gmail.com?subject=' [Sociale] Feedback '&body=Hey, Please add {{request.user.email}} to your mailing list.%0A I want to receive post notifications for this blog.%0A%0A Sincerely,%0A {{request.user.username}}  %0A%0A Thanks!" class="bbtns align-items-center">Ping Me !</a>
                                             <!-- <p class="text-bottom">You can unsubscribe at any time</p>	 -->
                                             <div class="br"></div>
                                         </aside>
