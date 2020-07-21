@@ -141,6 +141,11 @@ height: auto;
 							<img width = 55%  class = 'rounded-circle article-img' src = "{{user.profile.image.url}}">
 							<p>{{user.username}}</p>
 							<p>{{user.email}}</p>
+							<header class="major">
+								<h2>About Me</h2>
+							</header>
+							<p>{{user.profile.about}}</p>
+
 						</div>
 						<!-- <a href="#two" class="goto-next scrolly">Next</a> -->
 					</div>
@@ -148,7 +153,7 @@ height: auto;
 
 			
 			<!-- Two -->
-				<section id="two" class="main special">
+				<!-- <section id="two" class="main special">
 					<div class="container">
 						<div class="content">
 							<header class="major">
@@ -157,9 +162,9 @@ height: auto;
 							<p>{{user.profile.about}}</p>
 
 						</div>
-						<!-- <a href="#three" class="goto-next scrolly">Next</a> -->
+						<a href="#three" class="goto-next scrolly">Next</a>
 					</div>
-				</section>
+				</section> -->
 
 			<!-- Three -->
 
@@ -167,12 +172,9 @@ height: auto;
 			<section id="three" class="main special">
 				<div class="container">
 					<div class="content">
-						{% if posts.count > 1 %}
 						<header class="major">
-							<h2>Posts({{posts.count}})</h2>
+							<h2>Content</h2>
 						</header>
-						{% endif %}
-
 						{% if posts %} 
 						{% for post in posts %}
 							<article class="media content-section">
