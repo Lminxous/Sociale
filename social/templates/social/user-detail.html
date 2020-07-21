@@ -2,18 +2,122 @@
 
 <!DOCTYPE HTML>
 <html>
-        <head>
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{% static 'social/pro-assets/css/main.css' %}" />
-            <title>Profile | {{user.username}}</title>
-        </head>
 
+<style>
+	 body {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color:  rgb(11, 98, 212);
+
+    /* #4CAF50  #4c5eaf #9e0000 #009e7  #c36ddd rgb(5, 138, 226) Blue rgb(11, 138, 212) Pink rgb(212, 11, 128) Violet rgb(105, 11, 212) */
+}
+
+.topnav img {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topnav a:hover {
+    background-color: rgb(192, 189, 179);
+    color: rgb(0, 0, 0) !important;
+}
+
+.topnav a.active {
+    background-color:  rgb(149, 226, 5);
+    /* rgb(255, 187, 0) rgb(226, 211, 5)  rgb(226, 167, 5) rgb(226, 211, 5) rgb(204, 226, 5)*/
+    color: black !important;
+}
+
+.circular--square {
+border-radius: 50%;
+}
+
+.circular--landscape {
+display: inline-block;
+position: relative;
+width: 200px;
+height: 200px;
+overflow: hidden;
+border-radius: 90%;
+}
+
+.circular--landscape img {
+width: auto;
+height: 100%;
+margin-left: -50px;
+}
+
+.circular--portrait {
+position: relative;
+width: 200px;
+height: 200px;
+overflow: hidden;
+border-radius: 50%;
+}
+
+.circular--portrait img {
+width: 100%;
+height: auto;
+}
+</style>
+
+
+<head>
+	<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'social/pro-assets/css/main.css' %}" />
+		<title>Profile | {{user.username}}</title>
+</head>
+
+<!--================ Navigation Area =================-->
+<!-- <div class="topnav">
+	<a class="active" href="{% url 'social-home' %}">Sociale</a>
+
+	{% if user.is_authenticated %}
+	<a href="{% url 'logout' %}" style="float: right;">✈</a>
+	<a href="{% url 'profile' %}" style="float: right;">иχ</a> -->
+	<!-- <a class="nav-item nav-link" href="{% url 'post-create'%}" >+</a>
+	<a class="nav-item nav-link" href="{% url 'feed' %}" >☁</a>
+	<a href="{% url 'circle' %}">◯</a> -->
+<!-- 	
+	{% if user.is_staff %}
+	<a  href="{% url 'report' %}" >User Report</a>
+	{% endif %}
+	{% else %}
+	<a href="{% url 'register' %}" style="float: right;">Register</a>
+	<a href="{% url 'login' %}" style="float: right;">Login</a>
+	{% endif %}
+	<a href="{% url 'about' %}" style="float: right;">About Us</a>
+
+
+</div> -->
+<!--================ End Navigation Area =================-->
 	<body class="is-preload">
 
         
+
+
+		<!--================ Start Header Area =================-->
+
 
 		<!-- Header -->
 			<section id="header">
@@ -23,101 +127,105 @@
 				</header>
 			</section>
 
-		<!-- One -->
-			<section id="one" class="main special">
-				<div class="container">
-					<div class="content">
-						<header class="major">
-							<h2>Who I am</h2>
-                        </header>
-                        <img width = 55%  class = 'rounded-circle article-img' src = "{{user.profile.image.url}}">
-						<p>{{user.username}}</p>
-						<p>{{user.email}}</p>
-					</div>
-					<!-- <a href="#two" class="goto-next scrolly">Next</a> -->
-				</div>
-			</section>
+				
+		<!--================ End Header Area =================-->
 
-		
-		<!-- Two -->
-			<section id="two" class="main special">
+
+			<!-- One -->
+				<section id="one" class="main special">
+					<div class="container">
+						<div class="content">
+							<header class="major">
+								<h2>Who I am</h2>
+							</header>
+							<img width = 55%  class = 'rounded-circle article-img' src = "{{user.profile.image.url}}">
+							<p>{{user.username}}</p>
+							<p>{{user.email}}</p>
+						</div>
+						<!-- <a href="#two" class="goto-next scrolly">Next</a> -->
+					</div>
+				</section>
+
+			
+			<!-- Two -->
+				<section id="two" class="main special">
+					<div class="container">
+						<div class="content">
+							<header class="major">
+								<h2>About Me</h2>
+							</header>
+							<p>{{user.profile.about}}</p>
+
+						</div>
+						<!-- <a href="#three" class="goto-next scrolly">Next</a> -->
+					</div>
+				</section>
+
+			<!-- Three -->
+
+
+			<section id="three" class="main special">
 				<div class="container">
 					<div class="content">
+						{% if posts.count > 1 %}
 						<header class="major">
-							<h2>About Me</h2>
+							<h2>Posts({{posts.count}})</h2>
 						</header>
-                        <p>{{user.profile.about}}</p>
+						{% endif %}
 
+						{% if posts %} 
+						{% for post in posts %}
+							<article class="media content-section">
+								<img width=15%  class = 'rounded-circle article-img'src = "{{post.author.profile.image.url}}">
+							<div class="media-body">
+								<div class="article-metadata">
+								<small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+								</div>
+								<h3><a href="{%url 'post-detail' post.id%}">{{ post.title }}</a></h3>
+								<p class="article-content">{{ post.content }}</p>
+							</div>
+							</article>
+						{% endfor %}
+			
+						{% endif %}
+		
 					</div>
-					<!-- <a href="#three" class="goto-next scrolly">Next</a> -->
 				</div>
 			</section>
 
-		<!-- Three -->
+			<!-- Footer -->
+			<section id="footer">
 
+				<footer>
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
+					
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'social-home' %}" >Home</a></li>
+						<li><a href="{% url 'logout' %}" >Logout</a></li>
+						{% else %}
+						<li><a href="{% url 'register' %}">Join Us</a></li>
+						<li><a href="{% url 'login' %}">Already a Member?</a></li>
+						{% endif %}
 
-		<section id="three" class="main special">
-			<div class="container">
-				<div class="content">
-                    {% if posts.count > 1 %}
-                    <header class="major">
-                        <h2>Posts({{posts.count}})</h2>
-                    </header>
-                    {% endif %}
+					</ul>
+					Copyright ©2020 All rights reserved
+					
+				</footer>
+			</section>
 
-                    {% if posts %} 
-					{% for post in posts %}
-                        <article class="media content-section">
-                            <img width=15%  class = 'rounded-circle article-img'src = "{{post.author.profile.image.url}}">
-                        <div class="media-body">
-                            <div class="article-metadata">
-                            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                            </div>
-                            <h3><a href="{%url 'post-detail' post.id%}">{{ post.title }}</a></h3>
-                            <p class="article-content">{{ post.content }}</p>
-                        </div>
-                        </article>
-                    {% endfor %}
-		
-					{% endif %}
-	
-                </div>
-			</div>
-		</section>
+			<!-- Scripts -->
+			
+				<script  src= "{% static 'social/assets/js/main.js' %}" ></script>
 
-		<!-- Footer -->
-		<section id="footer">
-
-			<footer>
-				<ul class="icons">
-					<li><a href="https://www.instagram.com/pranay_.15/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="mailto:cprince4742@gmail.com?subject = [lminxous.github.io] Feedback&body = Your Message Here" class="icon fa-envelope"><span class="label">Email</span></a></li>
-				
-					{% if user.is_authenticated %}
-					<li><a href="{% url 'social-home' %}" >Home</a></li>
-					<li><a href="{% url 'logout' %}" >Logout</a></li>
-					{% else %}
-					<li><a href="{% url 'register' %}">Join Us</a></li>
-					<li><a href="{% url 'login' %}">Already a Member?</a></li>
-					{% endif %}
-
-				</ul>
-				 Copyright ©2020 All rights reserved
-				
-			</footer>
-		</section>
-
-        <!-- Scripts -->
-        
-            <script  src= "{% static 'social/assets/js/main.js' %}" ></script>
-
-            <script src = "{% static 'social/pro-assets/js/jquery.min.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/jquery.scrollex.min.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/jquery.scrolly.min.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/browser.min.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/breakpoints.min.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/util.js'%}"></script>
-            <script src = "{% static 'social/pro-assets/js/main.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/jquery.min.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/jquery.scrollex.min.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/jquery.scrolly.min.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/browser.min.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/breakpoints.min.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/util.js'%}"></script>
+				<script src = "{% static 'social/pro-assets/js/main.js'%}"></script>
             
 
 	</body>
