@@ -80,7 +80,7 @@
     <div class="collapse navbar-collapse" id="basicExampleNav">
 
       <!-- Links -->
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav ml-auto ">
 
         <!-- Dropdown -->
             {% if user.is_authenticated %}
@@ -97,37 +97,35 @@
                     {% endif %}
                 </div>
             </li>
+
             {% endif %}
+        </ul>
+
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+
+            <!-- About Dropdown -->
+            {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" style="float: right;">
+                        ✈</a>
+                    <a class="nav-link" href="{% url 'profile' %}" style="float: right;" >
+                        Profile</a>      
+                    <a class="nav-link" href="{% url 'about' %}" style="float: right;" >
+                        About Us</a>      
+                </li>  
+      
+            {% else %}
+                <li class="nav-item">    
+
+                    <a class="nav-link" href="{% url 'about' %}" style="float: right;" >About Us</a>      
+                    <a class="nav-link" href="{% url 'register' %}" style="float: right;">Register</a>
+                    <a class="nav-link" href="{% url 'login' %}" style="float: right;">Login</a>
+                </li>    
+            {% endif %}
+        
       </ul>
-
-            <!-- Links -->
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-
-                <!-- About Dropdown -->
-                {% if user.is_authenticated %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}" style="float: right;">
-                            ✈</a>
-                        <a class="nav-link" href="{% url 'profile' %}" style="float: right;" >
-                            Profile</a>      
-                        <a class="nav-link" href="{% url 'about' %}" style="float: right;" >
-                            About Us</a>      
-                    </li>  
-
-                {% else %}
-                    <li class="nav-item">    
-
-                        <a class="nav-link" href="{% url 'about' %}" style="float: right;" >About Us</a>      
-                        <a class="nav-link" href="{% url 'register' %}" style="float: right;">Register</a>
-                        <a class="nav-link" href="{% url 'login' %}" style="float: right;">Login</a>
-                    </li>    
-                {% endif %}
-
-            </ul>
-
-
-
    
     </div>
     <!-- Collapsible content -->
@@ -143,18 +141,18 @@
 
     <div class="container">
         
-          <!-- Messages -->
-            {% if messages %}
-                {% for message in messages %}
-                        <div class = "alert alert-{{message.tags}}">
-                        {{message}}
-                        </div>
-                {% endfor %}
-            {% endif %}
+        <!-- Messages -->
+          {% if messages %}
+              {% for message in messages %}
+                      <div class = "alert alert-{{message.tags}}">
+                      {{message}}
+                      </div>
+              {% endfor %}
+          {% endif %}
 
-        {% block content %}{% endblock %}
-            
-    </div>
+      {% block content %}{% endblock %}
+          
+  </div>
 
 
     <!--================ End Content Area =================-->
