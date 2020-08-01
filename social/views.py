@@ -9,10 +9,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
-def dummy(request):
-    pass
-
-
 # Home
 
 def home(request):
