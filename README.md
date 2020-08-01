@@ -5,6 +5,7 @@ A blog website hosted on heroku using AWS(S3 and IAM) on Postgres database .
 
 ![](https://github.com/Lminxous/Sociale/blob/master/social/static/social/images/Screenshot%202020-07-21%20at%2012.17.05%20AM.png)
 
+Link : https://pranay-chauhan.herokuapp.com
 
 # Explanation of Models
 

@@ -13,8 +13,6 @@
 }
 
 
-
-
 </style>
 
 <head>
@@ -81,26 +79,26 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="basicExampleNav">
 
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
 
-                <!-- Dropdown -->
-                    {% if user.is_authenticated %}
+        <!-- Dropdown -->
+            {% if user.is_authenticated %}
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Circle</a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'post-create'%}" >New Post</a>
-                            <a class="dropdown-item" href="{% url 'feed'%}" >My Space</a>
-                            <a class="dropdown-item" href="{% url 'circle' %}" >Followers</a>
-                            {% if user.is_staff %}
-                                <a class="dropdown-item" href="{% url 'report' %}" >User Report</a>
-                            {% endif %}
-                        </div>
-                    </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Circle</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'post-create'%}" >New Post</a>
+                    <a class="dropdown-item" href="{% url 'feed'%}" >My Space</a>
+                    <a class="dropdown-item" href="{% url 'circle' %}" >Followers</a>
+                    {% if user.is_staff %}
+                        <a class="dropdown-item" href="{% url 'report' %}" >User Report</a>
                     {% endif %}
-            </ul>
+                </div>
+            </li>
+            {% endif %}
+      </ul>
 
             <!-- Links -->
             <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -127,6 +125,8 @@
                 {% endif %}
 
             </ul>
+
+
 
    
     </div>
