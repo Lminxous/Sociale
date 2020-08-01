@@ -10,9 +10,7 @@ class Post(models.Model):
     reported_by = models.ManyToManyField(User,blank=True, related_name="reported_by")
 
     def __str__(self):
-        return self.title
-
-        
+        return self.title       
 
 
 class Comment(models.Model):
